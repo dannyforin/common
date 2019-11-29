@@ -27,6 +27,10 @@ const routes = [
     path: '/setting',
     name: 'set',
     component: () => import('../views/Set')
+  },
+  {
+    path: '/theme',
+    component: () => import('../views/Theme')
   }
 ]
 

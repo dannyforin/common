@@ -1,41 +1,36 @@
 <template>
-  <div class="app-root"
-       :class="themeClass">
-    <div class="app-container">
-      <p>{{ msg }}</p>
-      <select v-model="theme">
-        <option value="red">Red</option>
-        <option value="green">Green</option>
-        <option value="blue">Blue</option>
-      </select>
-    </div>
+  <div class="home">
+    <input type="text"
+           v-model="input_value">
+    <button @click="search">搜索</button>
+    <ul>
+      <li v-for="(v,i) in list"
+          :key="i">
+        <p>{{v.name}}</p>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app',
   data () {
     return {
-      msg: 'Dynamic Themes',
-      theme: 'red'
+      input_value: '',
+      list: []
     }
   },
-  computed: {
-    themeClass () {
-      return `theme-${this.theme}`
+  methods: {
+    search () {
+      this.$axios.get(`http://api.pingcc.cn/?mhname=${this.input_value}`).then(x => {
+        console.log(x)
+        this.list = x.data.list
+      })
     }
   }
+
 }
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/reset.scss";
-
-.app-container {
-  @include themify($themes) {
-    background-color: themed("background-color");
-    color: themed("color");
-  }
-}
 </style>

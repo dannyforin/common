@@ -4,7 +4,6 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import '@/axios'
-import '@/styles/reset.scss'
 import Vant from 'vant'
 import 'vant/lib/index.css'
 Vue.prototype.$axios = axios

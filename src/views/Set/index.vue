@@ -37,14 +37,14 @@
                  alt="">
           </div>
         </li>
-        <li class="personality-list-item">
+        <li class="personality-list-item"
+            @click="theme">
           <span>个性换肤</span>
           <div class="right-box">
-            <span class="desc">素雅白</span>
+            <span class="desc">{{theme_title}}</span>
             <img src="images/right.png"
                  alt="">
           </div>
-
         </li>
         <li class="personality-list-item">
           <span>当前版本</span>
@@ -93,13 +93,19 @@
 </template>
 
 <script>
+import { Toast } from 'vant'
 export default {
   data () {
     return {
-      value: 0
+      value: 0,
+      show: false,
+      theme_title: '素雅白'
     }
   },
   methods: {
+    theme () {
+      this.$router.push('/theme')
+    },
     onChange (value) {
       this.$toast('当前值：' + value)
     }
@@ -108,7 +114,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/reset.scss";
 .setting-page {
   background-color: #f2f2f2;
 
@@ -120,10 +125,6 @@ export default {
     margin-bottom: 20px;
     text-align: center;
     padding: 0 35px;
-    @include themify(red) {
-      background-color: themed("background-color");
-      color: themed("color");
-    }
 
     .mui-icon {
       color: #3a3a3a;
